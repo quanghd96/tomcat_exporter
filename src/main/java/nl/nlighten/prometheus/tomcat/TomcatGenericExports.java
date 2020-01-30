@@ -13,7 +13,7 @@ import java.util.*;
 
 /**
  * Exports Tomcat metrics applicable to most most applications:
- *
+ * <p>
  * - http session metrics
  * - request processor metrics
  * - thread pool metrics
@@ -55,6 +55,7 @@ public class TomcatGenericExports extends Collector {
             jmxDomain = "Tomcat";
         }
     }
+
     private void addRequestProcessorMetrics(List<MetricFamilySamples> mfs) {
         try {
             final MBeanServer server = ManagementFactory.getPlatformMBeanServer();
@@ -298,6 +299,15 @@ public class TomcatGenericExports extends Collector {
         mfs.add(tomcatInfo);
     }
 
+    private void addSystemInfo(List<MetricFamilySamples> mfs) {
+        GaugeMetricFamily minHeapFreeRatio = new GaugeMetricFamily(
+                "min_heap_free_ratio",
+                "Min Heap Free Ratio",
+                Collections.singletonList("server"));
+        minHeapFreeRatio.addMetric(Collections.singletonList(ServerInfo.getServerInfo()), 1);
+        mfs.add(minHeapFreeRatio);
+    }
+
     private void addNonEmptyMetricFamily(List<MetricFamilySamples> mfs, GaugeMetricFamily metricFamily) {
         if (metricFamily.samples.size() > 0) {
             mfs.add(metricFamily);
@@ -310,6 +320,7 @@ public class TomcatGenericExports extends Collector {
         addThreadPoolMetrics(mfs);
         addRequestProcessorMetrics(mfs);
         addVersionInfo(mfs);
+        addSystemInfo(mfs);
         return mfs;
 
     }
