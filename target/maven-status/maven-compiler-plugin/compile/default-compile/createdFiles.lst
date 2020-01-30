@@ -1,0 +1,6 @@
+nl/nlighten/prometheus/tomcat/TomcatGenericExports.class
+nl/nlighten/prometheus/tomcat/TomcatJdbcPoolExports.class
+nl/nlighten/prometheus/tomcat/TomcatMetricsServlet.class
+nl/nlighten/prometheus/tomcat/TomcatDbcp2PoolExports.class
+nl/nlighten/prometheus/tomcat/TomcatJdbcInterceptor.class
+nl/nlighten/prometheus/tomcat/TomcatServletMetricsFilter.class
