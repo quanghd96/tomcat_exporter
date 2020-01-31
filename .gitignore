@@ -1,0 +1,4 @@
+target/
+*.sh
+*.log
+.idea

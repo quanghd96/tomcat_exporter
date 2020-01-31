@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7e3169f3-b10f-46a3-ab05-80fefd1be9b9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/nl/nlighten/prometheus/tomcat/TomcatGenericExports.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/nlighten/prometheus/tomcat/TomcatGenericExports.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/nl/nlighten/prometheus/tomcat/TomcatGenericExports.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/nl/nlighten/prometheus/tomcat/TomcatGenericExports.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/exporter.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/exporter.war" afterDir="false" />
@@ -13,6 +14,13 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -25,13 +33,16 @@
     </option>
   </component>
   <component name="ProjectId" id="1X60T6efPqRfYbXNcGi9dOR4BXM" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -82,38 +93,50 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1580351241133</updated>
-      <workItem from="1580351242499" duration="4281000" />
+      <workItem from="1580351242499" duration="16693000" />
+      <workItem from="1580434814617" duration="9850000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
   <component name="WindowStateProjectService">
     <state x="726" y="193" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1580353789897">
       <screen x="0" y="23" width="1920" height="990" />
     </state>
     <state x="726" y="193" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1920.990@0.23.1920.990" timestamp="1580353789897" />
+    <state x="773" y="209" key="#com.intellij.ide.util.MemberChooser" timestamp="1580366719640">
+      <screen x="0" y="23" width="1920" height="990" />
+    </state>
+    <state x="773" y="209" key="#com.intellij.ide.util.MemberChooser/0.23.1920.990@0.23.1920.990" timestamp="1580366719640" />
     <state x="1067" y="450" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1580351399431">
       <screen x="0" y="23" width="1920" height="990" />
     </state>
     <state x="1067" y="450" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.23.1920.990@0.23.1920.990" timestamp="1580351399431" />
-    <state width="1122" height="268" key="GridCell.Tab.0.bottom" timestamp="1580353937565">
+    <state x="698" y="272" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1580446040921">
       <screen x="0" y="23" width="1920" height="990" />
     </state>
-    <state width="1122" height="268" key="GridCell.Tab.0.bottom/0.23.1920.990@0.23.1920.990" timestamp="1580353937565" />
-    <state width="1122" height="268" key="GridCell.Tab.0.center" timestamp="1580353937564">
+    <state x="698" y="272" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1920.990@0.23.1920.990" timestamp="1580446040921" />
+    <state width="1122" height="268" key="GridCell.Tab.0.bottom" timestamp="1580381023594">
       <screen x="0" y="23" width="1920" height="990" />
     </state>
-    <state width="1122" height="268" key="GridCell.Tab.0.center/0.23.1920.990@0.23.1920.990" timestamp="1580353937564" />
-    <state width="1122" height="268" key="GridCell.Tab.0.left" timestamp="1580353937564">
+    <state width="1122" height="268" key="GridCell.Tab.0.bottom/0.23.1920.990@0.23.1920.990" timestamp="1580381023594" />
+    <state width="1122" height="268" key="GridCell.Tab.0.center" timestamp="1580381023592">
       <screen x="0" y="23" width="1920" height="990" />
     </state>
-    <state width="1122" height="268" key="GridCell.Tab.0.left/0.23.1920.990@0.23.1920.990" timestamp="1580353937564" />
-    <state width="1122" height="268" key="GridCell.Tab.0.right" timestamp="1580353937565">
+    <state width="1122" height="268" key="GridCell.Tab.0.center/0.23.1920.990@0.23.1920.990" timestamp="1580381023592" />
+    <state width="1122" height="268" key="GridCell.Tab.0.left" timestamp="1580381023591">
       <screen x="0" y="23" width="1920" height="990" />
     </state>
-    <state width="1122" height="268" key="GridCell.Tab.0.right/0.23.1920.990@0.23.1920.990" timestamp="1580353937565" />
+    <state width="1122" height="268" key="GridCell.Tab.0.left/0.23.1920.990@0.23.1920.990" timestamp="1580381023591" />
+    <state width="1122" height="268" key="GridCell.Tab.0.right" timestamp="1580381023593">
+      <screen x="0" y="23" width="1920" height="990" />
+    </state>
+    <state width="1122" height="268" key="GridCell.Tab.0.right/0.23.1920.990@0.23.1920.990" timestamp="1580381023593" />
     <state x="626" y="275" width="667" height="486" key="find.popup" timestamp="1580356489466">
       <screen x="0" y="23" width="1920" height="990" />
     </state>
