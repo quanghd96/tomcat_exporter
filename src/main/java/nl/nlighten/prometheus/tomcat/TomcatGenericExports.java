@@ -1,6 +1,5 @@
 package nl.nlighten.prometheus.tomcat;
 
-import com.google.gson.Gson;
 import io.prometheus.client.Collector;
 import io.prometheus.client.CounterMetricFamily;
 import io.prometheus.client.GaugeMetricFamily;
@@ -12,7 +11,6 @@ import javax.management.*;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.lang.management.ManagementFactory;
-import java.lang.management.RuntimeMXBean;
 import java.util.*;
 
 /**
