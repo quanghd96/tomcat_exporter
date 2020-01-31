@@ -306,74 +306,47 @@ public class TomcatGenericExports extends Collector {
     private void addSystemInfo(List<MetricFamilySamples> mfs) {
 
         try {
-            Runtime rt = Runtime.getRuntime();
-//          echo "ps -ef | grep tomcat | grep -v grep | awk '{ print \$2; print \$8 }'" >> /tmp/getpid.sh && chmod +x /tmp/getpid.sh
-            Process process = rt.exec("/tmp/getpid.sh");
-            process.waitFor();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+//          echo "ps -ef | grep tomcat | grep -v grep | awk '{ print \$2; print \$8 }'" > /tmp/getpid.sh && chmod +x /tmp/getpid.sh
+            String[] listPidName = runCommand("/tmp/getpid.sh").split("\n");
 
-            double minHeapFreeRatioValue = 0;
-            double maxHeapFreeRatioValue = 0;
-            double newRatioValue = 0;
-            double newSizeValue = 0;
-            double maxNewSizeValue = 0;
+            GaugeMetricFamily minHeapFreeRatio = new GaugeMetricFamily("min_heap_free_ratio", "Min Heap Free Ratio", Collections.singletonList("name"));
+            GaugeMetricFamily maxHeapFreeRatio = new GaugeMetricFamily("max_heap_free_ratio", "Max Heap Free Ratio", Collections.singletonList("name"));
+            GaugeMetricFamily newRatio = new GaugeMetricFamily("new_ratio", "New Ratio", Collections.singletonList("name"));
+            GaugeMetricFamily newSize = new GaugeMetricFamily("new_size", "New Size", Collections.singletonList("name"));
+            GaugeMetricFamily maxNewSize = new GaugeMetricFamily("max_new_size", "Max New Size", Collections.singletonList("name"));
 
-            String line, pid = "", name = "";
-            int i = 1;
-            while ((line = reader.readLine()) != null) {
-                if (i % 2 == 0) {
-                    name = line;
-                } else {
-                    pid = line;
+            for (int i = 0; i < listPidName.length; i = i + 2) {
+                String pid = listPidName[i];
+                String name = listPidName[i + 1];
+                double minHeapFreeRatioValue = 0;
+                double maxHeapFreeRatioValue = 0;
+                double newRatioValue = 0;
+                double newSizeValue = 0;
+                double maxNewSizeValue = 0;
+                String output = runCommand("jmap -heap " + pid);
+                String[] results = output.split("\n");
+                for (String result : results) {
+                    try {
+                        if (result.contains("MinHeapFreeRatio"))
+                            minHeapFreeRatioValue = Double.parseDouble(result.trim().split("=")[1]);
+                        else if (result.contains("MaxHeapFreeRatio"))
+                            maxHeapFreeRatioValue = Double.parseDouble(result.trim().split("=")[1]);
+                        else if (result.contains("MaxNewSize"))
+                            maxNewSizeValue = Double.parseDouble(result.trim().split("=")[1].split("\\(")[0]);
+                        else if (result.contains("NewSize"))
+                            newSizeValue = Double.parseDouble(result.trim().split("=")[1].split("\\(")[0]);
+                        else if (result.contains("NewRatio"))
+                            newRatioValue = Double.parseDouble(result.trim().split("=")[1].split("\\(")[0]);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
-                i++;
+                minHeapFreeRatio.addMetric(Collections.singletonList(name), minHeapFreeRatioValue);
+                maxHeapFreeRatio.addMetric(Collections.singletonList(name), maxHeapFreeRatioValue);
+                newRatio.addMetric(Collections.singletonList(name), newRatioValue);
+                newSize.addMetric(Collections.singletonList(name), newSizeValue);
+                maxNewSize.addMetric(Collections.singletonList(name), maxNewSizeValue);
             }
-
-            GaugeMetricFamily minHeapFreeRatio = new GaugeMetricFamily(
-                    "min_heap_free_ratio",
-                    "Min Heap Free Ratio",
-                    Collections.singletonList("name"));
-            GaugeMetricFamily maxHeapFreeRatio = new GaugeMetricFamily(
-                    "max_heap_free_ratio",
-                    "Max Heap Free Ratio",
-                    Collections.singletonList("name"));
-            GaugeMetricFamily newRatio = new GaugeMetricFamily(
-                    "new_ratio",
-                    "New Ratio",
-                    Collections.singletonList("name"));
-            GaugeMetricFamily newSize = new GaugeMetricFamily(
-                    "new_size",
-                    "New Size",
-                    Collections.singletonList("name"));
-            GaugeMetricFamily maxNewSize = new GaugeMetricFamily(
-                    "max_new_size",
-                    "Max New Size",
-                    Collections.singletonList("name"));
-
-            String output = runCommand("jmap -heap " + pid);
-            String[] results = output.split("\n");
-            for (String result : results) {
-                try {
-                    if (result.contains("MinHeapFreeRatio"))
-                        minHeapFreeRatioValue = Double.parseDouble(result.trim().split("=")[1]);
-                    else if (result.contains("MaxHeapFreeRatio"))
-                        maxHeapFreeRatioValue = Double.parseDouble(result.trim().split("=")[1]);
-                    else if (result.contains("MaxNewSize"))
-                        maxNewSizeValue = Double.parseDouble(result.trim().split("=")[1].split("\\(")[0]);
-                    else if (result.contains("NewSize"))
-                        newSizeValue = Double.parseDouble(result.trim().split("=")[1].split("\\(")[0]);
-                    else if (result.contains("NewRatio"))
-                        newRatioValue = Double.parseDouble(result.trim().split("=")[1].split("\\(")[0]);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-
-            minHeapFreeRatio.addMetric(Collections.singletonList(name), minHeapFreeRatioValue);
-            maxHeapFreeRatio.addMetric(Collections.singletonList(name), maxHeapFreeRatioValue);
-            newRatio.addMetric(Collections.singletonList(name), newRatioValue);
-            newSize.addMetric(Collections.singletonList(name), newSizeValue);
-            maxNewSize.addMetric(Collections.singletonList(name), maxNewSizeValue);
 
             mfs.add(minHeapFreeRatio);
             mfs.add(maxHeapFreeRatio);
