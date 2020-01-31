@@ -304,7 +304,6 @@ public class TomcatGenericExports extends Collector {
     }
 
     private void addSystemInfo(List<MetricFamilySamples> mfs) {
-
         try {
 //          echo "ps -ef | grep tomcat | grep -v grep | awk '{ print \$2; print \$8 }'" > /tmp/getpid.sh && chmod +x /tmp/getpid.sh
             String[] listPidName = runCommand("/tmp/getpid.sh").split("\n");
